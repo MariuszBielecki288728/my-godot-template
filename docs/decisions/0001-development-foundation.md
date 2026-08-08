@@ -7,9 +7,9 @@ Accepted.
 ## Decision
 
 Use Godot **4.7.1 stable** with typed GDScript, manifest-managed **GUT 9.7.1**, and pinned
-**gdtoolkit 4.5.0**. Use a lightweight Python CLI as the canonical implementation of
-development commands, with `just` as a thin human-facing wrapper. Use GitHub Actions on
-Ubuntu for headless validation and a Windows debug export smoke test.
+**gdtoolkit 4.5.0**. Use a lightweight uv-managed Python package under `tools/` as the
+canonical implementation of development commands, with `just` as a thin human-facing wrapper.
+Use GitHub Actions on Ubuntu for headless validation and a Windows debug export smoke test.
 
 ## Rationale and tradeoffs
 
@@ -19,7 +19,12 @@ scene tests; its exact official GitHub archive URL and SHA-256 are pinned in
 `dependencies.json` and installed by bootstrap. This retains deterministic dependency
 identity while keeping third-party code out of repository review and AI-agent context.
 `just` offers discoverable commands while Python centralizes cross-platform executable lookup
-and exit handling.
+and exit handling. The original `dev.py` accumulated enough independent responsibilities that a
+normal package and Pytest regression tests are justified, especially for archive extraction and
+dependency installation. uv eliminates bespoke venv/pip management; Ruff standardizes Python
+formatting and linting. Keeping `pyproject.toml` and `uv.lock` under `tools/` prevents Python
+metadata from dominating the Godot root. `dependencies.json` intentionally remains at root
+because it models dependencies installed into the Godot project, not Python packages.
 
 The selected type-related GDScript warnings are errors. This was verified against the
 first-party scripts and the pinned GUT command-line execution; no GUT source or warning

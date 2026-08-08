@@ -1,13 +1,14 @@
 # Architecture
 
-This starter deliberately imposes no gameplay architecture. Its only boundaries are:
+This starter deliberately imposes no gameplay architecture. Its boundaries are:
 
-- `src/` and `scenes/`: first-party project code and executable scenes;
-- `dependencies.json`: declarative exact pins for third-party development dependencies;
-- `addons/gut/`: generated GUT code, installed by bootstrap and excluded from first-party linting and formatting;
-- `tests/`: deterministic unit tests and scene/integration tests;
-- `tools/dev.py`: the single local command implementation used by `just` and CI;
-- `.github/workflows/ci.yml`: CI orchestration that delegates to that tooling.
+- `src/` and `scenes/`: first-party Godot runtime code and executable scenes;
+- `tests/`: GUT tests for Godot code;
+- `dependencies.json`: exact manifest-managed Godot/project dependency pins;
+- `addons/gut/`: generated third-party Godot development code, excluded from first-party checks;
+- `tools/`: isolated uv-managed Python development-tool project and its Pytest suite;
+- `justfile`: thin repository-level developer-command facade;
+- `.github/workflows/ci.yml`: CI orchestration over the same `godot-dev` commands.
 
 `src/bootstrap/` exists solely to prove project-owned code loads and executes. It is not a
 framework and should be removed or replaced when real game code starts.
