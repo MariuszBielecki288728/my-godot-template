@@ -2,37 +2,43 @@
 set shell := ["powershell.exe", "-NoProfile", "-Command"]
 
 bootstrap:
-    python tools/dev.py bootstrap
+    uv run --project tools --locked godot-dev deps
 
 deps:
-    python tools/dev.py deps
+    uv run --project tools --locked godot-dev deps
 
 format:
-    python tools/dev.py format
+    uv run --project tools --locked godot-dev format
 
 format-check:
-    python tools/dev.py format-check
+    uv run --project tools --locked godot-dev format-check
 
 lint:
-    python tools/dev.py lint
-
-godot-check:
-    python tools/dev.py godot-check
+    uv run --project tools --locked godot-dev lint
 
 test:
-    python tools/dev.py test
+    uv run --project tools --locked godot-dev test
+
+godot-check:
+    uv run --project tools --locked godot-dev godot-check
 
 smoke:
-    python tools/dev.py smoke
+    uv run --project tools --locked godot-dev smoke
 
 check:
-    python tools/dev.py check
+    uv run --project tools --locked godot-dev check
 
 run:
-    python tools/dev.py run
+    uv run --project tools --locked godot-dev run
 
 export-windows:
-    python tools/dev.py export-windows
+    uv run --project tools --locked godot-dev export-windows
 
 clean:
-    python tools/dev.py clean
+    uv run --project tools --locked godot-dev clean
+
+hooks-install:
+    uv run --project tools --locked pre-commit install
+
+hooks-run:
+    uv run --project tools --locked pre-commit run --all-files
