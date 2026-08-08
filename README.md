@@ -26,13 +26,16 @@ just check
 just run
 ```
 
-`just bootstrap` creates a local `.venv` and installs pinned `gdtoolkit==4.5.0`.
+`just bootstrap` creates a local `.venv`, installs pinned `gdtoolkit==4.5.0`, and installs
+the third-party development dependencies pinned in `dependencies.json`. Downloads are
+verified with SHA-256 before installation.
 
 ## Commands
 
 | Command | Purpose |
 | --- | --- |
 | `just bootstrap` | Create/update the local development environment. |
+| `just deps` | Install the manifest-managed development dependencies. |
 | `just format` | Format first-party GDScript. |
 | `just format-check` | Check formatting without mutation. |
 | `just lint` | Lint first-party GDScript. |
@@ -53,7 +56,8 @@ checked project and is compatible with the pinned GUT release used by the test c
 ## Layout
 
 ```text
-addons/gut/       Pinned GUT 9.7.1 (vendored third-party test dependency)
+dependencies.json Declarative pins for third-party development dependencies
+addons/gut/       Generated GUT test dependency (ignored, installed by bootstrap)
 scenes/           Minimal executable main scene
 src/bootstrap/    Temporary typed validation fixture and main-scene script
 tests/            Unit and scene/integration tests

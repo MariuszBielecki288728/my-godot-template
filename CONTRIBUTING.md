@@ -5,8 +5,11 @@
 Install Godot **4.7.1 stable**, Python 3.12+ and `just`. If Godot is not on PATH, set
 `GODOT_BIN` to its executable. Then run `just bootstrap` followed by `just check`.
 
-`bootstrap` creates `.venv` and installs the pinned development tooling. It is safe to
-rerun. Open `project.godot` in Godot for editor work.
+`bootstrap` creates `.venv`, installs the pinned development tooling, and installs the
+SHA-256-verified dependencies declared in `dependencies.json`. It is safe to rerun. Run it
+after a fresh checkout or a dependency-manifest change. Generated dependency directories
+such as `addons/gut/` must never be manually committed. Open `project.godot` in Godot for
+editor work.
 
 ## Daily commands
 

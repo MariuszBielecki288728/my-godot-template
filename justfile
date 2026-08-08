@@ -4,6 +4,9 @@ set shell := ["powershell.exe", "-NoProfile", "-Command"]
 bootstrap:
     python tools/dev.py bootstrap
 
+deps:
+    python tools/dev.py deps
+
 format:
     python tools/dev.py format
 

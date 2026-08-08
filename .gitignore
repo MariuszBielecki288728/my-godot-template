@@ -7,7 +7,10 @@ build/
 reports/
 __pycache__/
 *.py[cod]
-repomix-output.xml
+repomix-output*.xml
+
+# Generated third-party development dependencies.
+addons/gut/
 
 # OS/editor temporary files.
 .DS_Store
