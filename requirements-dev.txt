@@ -1,0 +1,2 @@
+# Development-only formatting and linting.  Keep this pin in sync with documentation.
+gdtoolkit==4.5.0
