@@ -1,0 +1,8 @@
+{
+  "exclude": [
+    "addons",
+    ".godot",
+    "build",
+    "reports"
+  ]
+}
